@@ -1,9 +1,10 @@
 ﻿using UrlShortener.Models;
+using UrlShortener.Shared;
 
 namespace UrlShortener.Interfaces;
 
 public interface IUrlShortenerDataService
 {
-    Task AddUrlAsync(Url url);
-    Task<Url?> GetLongUrlAsync(string shortUrl);
+    Task<Result<bool>> AddUrlAsync(Url url);
+    Task<Result<Url?>> GetLongUrlAsync(string shortUrl);
 }

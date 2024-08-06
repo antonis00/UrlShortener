@@ -12,7 +12,7 @@ public static class ResultExtensions
         }
         else
         {
-            return new BadRequestObjectResult(result.Error);
+            return new ObjectResult(result.Error) { StatusCode = StatusCodes.Status500InternalServerError };
         }
     }
 
@@ -24,7 +24,34 @@ public static class ResultExtensions
         }
         else
         {
-            return new BadRequestObjectResult(result.Error);
+            return new ObjectResult(result.Error) { StatusCode = StatusCodes.Status500InternalServerError };
         }
     }
+
+    public static Result<T> PropagateResult<T>(this Result<T?> result)
+        where T : class
+    {
+        if (!result.IsSuccess)
+        {
+            return Result<T>.Failure(result.Error);
+        }
+
+        if (result.Value is null)
+        {
+            return Result<T>.Failure("Value is null");
+        }
+
+        return Result<T>.Success(result.Value);
+    }
+
+    public static Result<T> PropagateResult<T>(this Result<bool> result, T successValue)
+    {
+        if (!result.IsSuccess)
+        {
+            return Result<T>.Failure(result.Error);
+        }
+
+        return Result<T>.Success(successValue);
+    }
+
 }

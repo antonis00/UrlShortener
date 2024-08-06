@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace UrlShortener.Shared;
+﻿namespace UrlShortener.Shared;
 
 public class UrlHelper
 {
