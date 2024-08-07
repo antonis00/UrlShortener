@@ -17,12 +17,18 @@ namespace UrlShortener.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OriginalUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ShortUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ShortUrl = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Urls", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Urls_ShortUrl",
+                table: "Urls",
+                column: "ShortUrl",
+                unique: true);
         }
 
         /// <inheritdoc />

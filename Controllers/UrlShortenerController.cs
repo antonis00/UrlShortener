@@ -22,7 +22,7 @@ public class UrlShortenerController : ControllerBase
     {
         var result = await _urlShortenerService.ShortenUrlAsync(urlDto.LongUrl);
 
-        return result.ToActionResult(url => CreatedAtAction(nameof(GetUrl), new { shortUrl = url.ShortUrl }, new { shortUrl = $"https://abc.{url.ShortUrl}.com" }));
+        return result.ToActionResult(url => CreatedAtAction(nameof(GetUrl), new { shortUrl = url.ShortUrl }, new { shortUrl = UrlHelper.Wrap(url.ShortUrl) }));
     }
 
     [HttpGet("shortUrl")]

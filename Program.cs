@@ -1,17 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using UrlShortener.Data;
+using UrlShortener.DataServices;
 using UrlShortener.Interfaces;
 using UrlShortener.Services;
-using UrlShortener.DataServices;
-
-namespace UrlShortener;
 
 public class Program
 {
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+        Console.WriteLine($"Environment: {builder.Environment.EnvironmentName}");
 
         // Add services to the container.
         builder.Services.AddControllers();

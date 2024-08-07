@@ -2,22 +2,26 @@
 
 public class UrlHelper
 {
-    private const string _prefix = "https://abc.";
-    private const string _postfix = ".com";
+    private const string _baseUrl = "abc.com/";
 
     public static string Strip(string url)
     {
-        if (url.StartsWith(_prefix, StringComparison.OrdinalIgnoreCase))
+        int index = url.IndexOf(_baseUrl);
+
+        if (index >= 0)
         {
-            url = url.Substring(_prefix.Length);
+            url = url.Substring(index + _baseUrl.Length);
         }
 
-        if (url.EndsWith(_postfix, StringComparison.OrdinalIgnoreCase))
-        {
-            url = url.Substring(0, url.Length - _postfix.Length);
-        }
-
+        url = url.TrimEnd('/');
 
         return url;
     }
+
+    public static string Wrap(string url)
+    {
+        return $"https://abc.com/{url}";
+    }
+
+
 }

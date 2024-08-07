@@ -11,8 +11,8 @@ using UrlShortener.Data;
 namespace UrlShortener.Migrations
 {
     [DbContext(typeof(UrlContext))]
-    [Migration("20240803204737_AddIndexToShortUrl")]
-    partial class AddIndexToShortUrl
+    [Migration("20240807121625_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
