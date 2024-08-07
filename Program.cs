@@ -39,13 +39,30 @@ public class Program
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "UrlShortener API v1");
-                c.RoutePrefix = string.Empty; // To serve the Swagger UI at the app's root (http://localhost:<port>/)
+                c.RoutePrefix = string.Empty;
             });
         }
 
         app.UseHttpsRedirection();
         app.UseAuthorization();
         app.MapControllers();
+
+        // Apply migrations at startup
+        using (var scope = app.Services.CreateScope())
+        {
+            var services = scope.ServiceProvider;
+            try
+            {
+                var context = services.GetRequiredService<UrlContext>();
+                context.Database.Migrate();
+            }
+            catch (Exception ex)
+            {
+                var logger = services.GetRequiredService<ILogger<Program>>();
+                logger.LogError(ex, "An error occurred while migrating the database.");
+            }
+        }
+
         app.Run();
     }
 }
