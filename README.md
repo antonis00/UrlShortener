@@ -12,17 +12,37 @@ The application currently has two routes:
 ## How to run the application
 
 Prerequisites: Docker (with docker compose)
-1. Move the two provided files (docker-compose.yml and .env) in a new directory
-2. In this new directory, run the command: docker compose up.
+1. Copy the provided .env file, containing the environment variables, to the same directory as the docker-compose.yml file.
+2. In this directory run the command: docker compose up.
 
 ## How to use web API
 
-POST request that shortens a long url: 
-  Path: https://localhost:8080/api/UrlShortener/shorten
-  Example: curl -X POST "https://localhost:44307/api/UrlShortener/shorten" ^-H "Content-Type: application/json" ^-d "{\"longUrl\":\"https://example.com/information-architecture-gitlab-backend/kanban-ux-aspnet\"}"
-  
-GET request that returns the long url that corresponds to the given shortened url: 
-  Path: https://localhost:8080/api/UrlShortener/shortUrl?shortUrl=shortString
-  Example: curl -X GET "https://localhost:8080/api/UrlShortener/shortUrl?shortUrl=shortenedUrl"
+The POST request that shortens a long url:
 
-Enjoy!
+  Path:
+  
+  ```
+  https://localhost:8080/api/UrlShortener/shorten
+  ```
+  
+  Example request: 
+  
+  ```
+  curl -k -X POST "https://localhost:8080/api/UrlShortener/shorten" -H "Content-Type: application/json" -d "{\"longUrl\":\"https://example.com/information-architecture-gitlab-backend/kanban-ux-aspnet\"}"
+  ```
+  
+The GET request that returns the long url that corresponds to the given shortened url:
+
+  Path: 
+  
+  ```
+  https://localhost:8080/api/UrlShortener/shortUrl?shortUrl=shortString
+  ```
+
+  Example request: 
+  
+  ```
+  curl -X GET "https://localhost:8080/api/UrlShortener/shortUrl?shortUrl=shortenedUrl"
+  ```
+
+## Enjoy!
