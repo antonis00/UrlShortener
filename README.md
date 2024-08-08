@@ -12,8 +12,9 @@ The application currently has two routes:
 ## How to run the application
 
 Prerequisites: Docker (with docker compose)
-1. Copy the provided .env file, containing the environment variables, to the same directory as the docker-compose.yml file.
-2. In this directory run the command: docker compose up.
+1. Clone the project locally
+2. Copy the provided .env file to the UrlShortener directory (which contains docker-compose.yml file).
+3. In the same directory run the command: docker compose up.
 
 ## How to use web API
 
@@ -42,7 +43,7 @@ The GET request that returns the long url that corresponds to the given shortene
   Example request: 
   
   ```
-  curl -X GET "https://localhost:8080/api/UrlShortener/shortUrl?shortUrl=shortenedUrl"
+  curl -k -X GET "https://localhost:8080/api/UrlShortener/shortUrl?shortUrl=shortenedUrl"
   ```
 
 ## Enjoy!
